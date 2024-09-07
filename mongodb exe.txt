@@ -1,0 +1,157 @@
+MongoDB CRUD
+
+1. Create Operation
+_____________________________________________________________________________________________________
+
+test> use library
+switched to db library
+library> db
+
+1.1. Insert
+----------------------------------------------------------------------------------------
+
+adding a books collection and insertOne books with values of name,authour,published year
+
+library> db.books.insertOne({name:"Atomic Habits",author: "James Clear",pubYear:2018})
+
+library> db.books.find()
+[
+  {
+    _id: ObjectId('66dc64e373b369cf41cdcdf6'),
+    name: 'Atomic Habits',
+    author: 'James Clear',
+    pubYear: 2018
+  }
+]
+
+-------------------------------------------------------------------------------
+1.2. Insert Many
+
+insert multiple books into the library database
+
+ db.books.insertMany([{name:"Harry Potter",author:"JK Rowling",pubYear:1997},
+		      {name:"The 5AM Club",author:"Robin Sharma",pubYear:2018}])
+
+library> db.books.find()
+[
+  {
+    _id: ObjectId('66dc64e373b369cf41cdcdf6'),
+    name: 'Atomic Habits',
+    author: 'James Clear',
+    pubYear: 2018
+  },
+  {
+    _id: ObjectId('66dc666173b369cf41cdcdf7'),
+    name: 'Harry Potter',
+    author: 'JK Rowling',
+    pubYear: 1997
+  },
+  {
+    _id: ObjectId('66dc666173b369cf41cdcdf8'),
+    name: 'The 5AM Club',
+    author: 'Robin Sharma',
+    pubYear: 2018
+  }
+]
+-------------------------------------------------------------------------------------
+
+
+2. Read Operation
+________________________________________________________________________________________________________________
+
+
+library> db.books.find({author:"JK Rowling"})
+[
+  {
+    _id: ObjectId('66dc666173b369cf41cdcdf7'),
+    name: 'Harry Potter',
+    author: 'JK Rowling',
+    pubYear: 1997
+  }
+]
+
+3. Update Operation
+_____________________________________________________________________________________________________________
+
+
+library> db.books.update({name:"The Catcher in the Rye"},{$set:{pubYear:2024,genre:"Mystery"}})
+
+Showing the update book item
+
+library> db.books.find({name:"The Catcher in the Rye"})
+[
+  {
+    _id: ObjectId('66dc6b2f73b369cf41cdcdf9'),
+    name: 'The Catcher in the Rye',
+    author: 'J.D. Salinger',
+    pubYear: 2024,
+    genre: 'Mystery'
+  }
+]
+
+
+Showing all books
+
+
+db.books.find()
+
+[
+  {
+    _id: ObjectId('66dc64e373b369cf41cdcdf6'),
+    name: 'Atomic Habits',
+    author: 'James Clear',
+    pubYear: 2018
+  },
+  {
+    _id: ObjectId('66dc666173b369cf41cdcdf7'),
+    name: 'Harry Potter',
+    author: 'JK Rowling',
+    pubYear: 1997
+  },
+  {
+    _id: ObjectId('66dc666173b369cf41cdcdf8'),
+    name: 'The 5AM Club',
+    author: 'Robin Sharma',
+    pubYear: 2018
+  },
+  {
+    _id: ObjectId('66dc6b2f73b369cf41cdcdf9'),
+    name: 'The Catcher in the Rye',
+    author: 'J.D. Salinger',
+    pubYear: 2024,
+    genre: 'Mystery'
+  }
+]
+
+
+4. Delete Operation
+____________________________________________________________________________________________________
+
+
+Remove the books before the 2000 year
+
+db.books.remove({pubYear:{$lt:2000}})
+
+
+It removes the Horry potter book items inside this books collections of Library Database
+[
+  {
+    _id: ObjectId('66dc64e373b369cf41cdcdf6'),
+    name: 'Atomic Habits',
+    author: 'James Clear',
+    pubYear: 2018
+  },
+  {
+    _id: ObjectId('66dc666173b369cf41cdcdf8'),
+    name: 'The 5AM Club',
+    author: 'Robin Sharma',
+    pubYear: 2018
+  },
+  {
+    _id: ObjectId('66dc6b2f73b369cf41cdcdf9'),
+    name: 'The Catcher in the Rye',
+    author: 'J.D. Salinger',
+    pubYear: 2024,
+    genre: 'Mystery'
+  }
+]
