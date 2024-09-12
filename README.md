@@ -1,4 +1,4 @@
-MongoDB CRUD Practice 😊😊😊
+MongoDB CRUD Operation 😊😊😊
 -----------------------------------
 This project is a practice application for performing CRUD (Create, Read, Update, Delete) operations using MongoDB. 
 It is designed to help you understand and implement basic database operations in a MongoDB environment.
